@@ -29,26 +29,24 @@ public class CancionEntidad {
         initialValue = 1,                           // Valor inicial de la secuencia
         allocationSize = 50                         // Número de IDs que JPA pre-solicita (optimización)
     ) //tengo dudas si usar sequence AUTO o IDENTITY
-    private int idCancion; 
+    private int idCancion; //le puse int porque se solicita este tipo de dato pero se sugiere uso de long en vez de int para evitar problemas de overflow
 
-    @Column(name = "TITULO_CANCION", length = 200, nullable = false, unique = false) 
+    @Column(name = "TITULO_CANCION", length = 200, nullable = false) 
     private String tituloCancion; 
 
-    @Column(name = "CALIFICACIÓN_CANCION", nullable = false) 
+    @Column(name = "CALIFICACION_CANCION", nullable = false) 
     private double calificacionCancion; 
 
     @Column (name = "LANZAMIENTO_CANCION", nullable = false)
     private LocalDate lanzamientoCancion; 
 
-    @Column(name = "FAVORITA_CANCIÓN", nullable = false)
+    @Column(name = "FAVORITA_CANCION", nullable = false)
     private boolean favoritaCancion; 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idArtista")
     private ArtistaEntidad artista;
-
-    @OneToMany(mappedBy = "artista")
-    private List<CancionEntidad> canciones; 
+ 
 
      public CancionEntidad() {
     }
@@ -101,6 +99,6 @@ public class CancionEntidad {
     public void setArtista(ArtistaEntidad artista) {    
         this.artista = artista;
     }   
-
+}
 
         
