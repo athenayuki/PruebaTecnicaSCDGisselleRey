@@ -1,8 +1,6 @@
 package com.examen.backend_prueba;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,8 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-import jakarta.persistence.CascadeType;
-import java.util.Set;
+import java.util.List;
 
 
 
@@ -47,17 +44,63 @@ public class CancionEntidad {
     private boolean favoritaCancion; 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idArtista", nullable = false)
+    @JoinColumn(name = "idArtista")
     private ArtistaEntidad artista;
 
+    @OneToMany(mappedBy = "artista")
+    private List<CancionEntidad> canciones; 
 
-      // Relación One-to-Many: Un artista puede tener muchas canciones.
-    // 'mappedBy = "artista"' indica que la propiedad 'artista' en CancionEntidad es la dueña de la relación.
-    // CascadeType.ALL significa que las operaciones (persistir, eliminar) se propagarán a las entidades relacionadas.
-    // orphanRemoval = true es útil para eliminar canciones cuando se desvinculan de un artista.
-    @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<CancionEntidad> canciones = new HashSet<>(); // Usa Set para evitar duplicados, o List si el orden es importante.
+     public CancionEntidad() {
+    }
+
+    public CancionEntidad(String tituloCancion, double calificacionCancion, LocalDate lanzamientoCancion, boolean favoritaCancion, ArtistaEntidad artista) {
+        this.tituloCancion = tituloCancion;
+        this.calificacionCancion = calificacionCancion;
+        this.lanzamientoCancion = lanzamientoCancion;
+        this.favoritaCancion = favoritaCancion;
+        this.artista = artista;
+    }
 
 
+    public int getIdCancion() {
+        return idCancion;
+    }       
+    public void setIdCancion(int idCancion) {
+            this.idCancion = idCancion;
+        }   
 
-}
+    public String getTituloCancion() {
+        return tituloCancion;
+    }
+    public void setTituloCancion(String tituloCancion) {    
+        this.tituloCancion = tituloCancion;
+    }
+
+    public double getCalificacionCancion() {
+        return calificacionCancion; 
+
+    }
+    public void setCalificacionCancion(double calificacionCancion) {        
+        this.calificacionCancion = calificacionCancion;
+    }
+    public LocalDate getLanzamientoCancion() {
+        return lanzamientoCancion;      
+    }
+    public void setLanzamientoCancion(LocalDate lanzamientoCancion) {                       
+        this.lanzamientoCancion = lanzamientoCancion;
+    }
+    public boolean isFavoritaCancion() {
+        return favoritaCancion;             
+    }
+    public void setFavoritaCancion(boolean favoritaCancion) {   
+        this.favoritaCancion = favoritaCancion;
+    }
+    public ArtistaEntidad getArtista() {
+        return artista; 
+    }
+    public void setArtista(ArtistaEntidad artista) {    
+        this.artista = artista;
+    }   
+
+
+        
