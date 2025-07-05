@@ -38,9 +38,14 @@ public class ArtistaEntidad {
     @Column(name = "SEGUIR_ARTISTA", nullable = false) 
     private boolean seguirArtista; 
 
+    private List<Solicitud> solicitudes; // No es necesario usar @OneToMany aquí, ya que no se especifica la relación en la entidad Solicitud
 
     @OneToMany(mappedBy = "artista")
     private Set<CancionEntidad> canciones = new HashSet<>(); 
+
+
+
+
 
     public ArtistaEntidad() {
     }
@@ -48,7 +53,7 @@ public class ArtistaEntidad {
     public ArtistaEntidad(String nombreArtista, LocalDate fechaDebut, boolean seguiRArtista) {
         this.nombreArtista = nombreArtista;
         this.fechaDebut = fechaDebut;
-        this.seguiRArtista = seguiRArtista;
+        this.seguirArtista = seguiRArtista;
     }
 
     public int getIdArtista() {
@@ -76,11 +81,11 @@ public class ArtistaEntidad {
     }
 
     public boolean isSeguiRArtista() {
-        return seguiRArtista;
+        return seguirArtista;
     }
 
     public void setSeguiRArtista(boolean seguiRArtista) {
-        this.seguiRArtista = seguiRArtista;
+        this.seguirArtista = seguiRArtista;
     }
 
 
