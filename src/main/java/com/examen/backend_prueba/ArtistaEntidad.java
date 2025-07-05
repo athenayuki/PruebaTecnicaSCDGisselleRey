@@ -38,7 +38,6 @@ public class ArtistaEntidad {
     @Column(name = "SEGUIR_ARTISTA", nullable = false) 
     private boolean seguirArtista; 
 
-    private List<Solicitud> solicitudes; // No es necesario usar @OneToMany aquí, ya que no se especifica la relación en la entidad Solicitud
 
     @OneToMany(mappedBy = "artista")
     private Set<CancionEntidad> canciones = new HashSet<>(); 
