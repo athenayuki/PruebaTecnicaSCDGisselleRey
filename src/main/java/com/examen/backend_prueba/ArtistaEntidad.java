@@ -1,14 +1,17 @@
 package com.examen.backend_prueba;
 
 
-import jakarta.persistence.Entity; 
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.GeneratedValue;
-
+import java.util.Set;
+import java.util.HashSet;
 import java.time.LocalDate;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.GenerationType;
 
@@ -38,7 +41,16 @@ public class ArtistaEntidad {
     private boolean seguiRArtista; 
 
 
-
+// --- Relación OneToMany ---
+    // Un artista puede tener muchas canciones
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // - mappedBy: Indica el campo en la entidad "muchos" (CancionEntidad) que es el dueño de la relación.
+    //             En CancionEntidad, necesitaremos un campo 'artista' de tipo ArtistaEntidad.
+    // - cascade: Define cómo las operaciones (persist, merge, remove, etc.) se propagan a las entidades relacionadas.
+    //            CascadeType.ALL significa que si persistes o eliminas un Artista, sus canciones asociadas también serán afectadas.
+    // - fetch: Define la estrategia de carga. FetchType.LAZY (por defecto) significa que las canciones no se cargarán
+    //          de la base de datos hasta que se accedan. FetchType.EAGER cargaría las canciones junto con el artista.
+    private Set<CancionEntidad> canciones = new HashSet<>(); // Inicializa la colección para evitar NullPointerExceptions
 
 
 }

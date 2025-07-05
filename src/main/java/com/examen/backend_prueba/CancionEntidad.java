@@ -1,15 +1,21 @@
 package com.examen.backend_prueba;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-
+import jakarta.persistence.CascadeType;
+import java.util.Set;
 
 
 
@@ -39,4 +45,19 @@ public class CancionEntidad {
 
     @Column(name = "FAVORITA_CANCIÓN", nullable = false)
     private boolean favoritaCancion; 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idArtista", nullable = false)
+    private ArtistaEntidad artista;
+
+
+      // Relación One-to-Many: Un artista puede tener muchas canciones.
+    // 'mappedBy = "artista"' indica que la propiedad 'artista' en CancionEntidad es la dueña de la relación.
+    // CascadeType.ALL significa que las operaciones (persistir, eliminar) se propagarán a las entidades relacionadas.
+    // orphanRemoval = true es útil para eliminar canciones cuando se desvinculan de un artista.
+    @OneToMany(mappedBy = "artista", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<CancionEntidad> canciones = new HashSet<>(); // Usa Set para evitar duplicados, o List si el orden es importante.
+
+
+
 }
