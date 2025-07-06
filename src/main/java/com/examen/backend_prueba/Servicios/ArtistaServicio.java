@@ -1,9 +1,8 @@
 package com.examen.backend_prueba.Servicios;
 
-
+import com.examen.backend_prueba.ArtistaEntidad;
 import org.springframework.stereotype.Service;
 import com.examen.backend_prueba.Repositorio.ArtistaRepositorio;
-import com.examen.backend_prueba.ArtistaEntidad; 
 import java.util.List; 
 import java.util.Optional; 
 

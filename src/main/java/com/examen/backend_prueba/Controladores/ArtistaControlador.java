@@ -28,10 +28,14 @@ public class ArtistaControlador {
         this.artistaServicio = artistaServicio;
     }
 
-@GetMapping
-public List<ArtistaEntidad> obtenerTodosLosArtistas() {
-    return artistaServicio.obtenerTodosLosArtistas();
-}
+    @GetMapping("/{id}") // <--- Asegúrate de tener esto exactamente así
+    public ResponseEntity<ArtistaEntidad> obtenerArtistaPorId(@PathVariable int id) {
+        Optional<ArtistaEntidad> artista = artistaServicio.obtenerArtistaPorId(id);
+        return artista.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                      .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+
 
 @PostMapping
 
