@@ -32,10 +32,14 @@ public class ArtistaServicio {
     public void eliminarArtista(int id) {
         artistaRepositorio.deleteById(id);
     }
-    public ArtistaEntidad actualizarArtista(int id, ArtistaEntidad artistaActualizado) { //IA
-        if (artistaRepositorio.existsById(id)) {
-            artistaActualizado.setIdArtista(id);
-            return artistaRepositorio.save(artistaActualizado);
+    public ArtistaEntidad actualizarArtista(int id, ArtistaEntidad artistaDetalles) { //IA
+         Optional<ArtistaEntidad> artistaExistenteOptional = artistaRepositorio.findById(id);
+        if (artistaExistenteOptional.isPresent()) {
+             ArtistaEntidad artistaExistente = artistaExistenteOptional.get();
+             artistaExistente.setNombreArtista(artistaDetalles.getNombreArtista());
+            artistaExistente.setFechaDebut(artistaDetalles.getFechaDebut());
+            artistaExistente.setSeguiRArtista(artistaDetalles.isSeguiRArtista());
+            return artistaRepositorio.save(artistaExistente);
         } else {
             throw new RuntimeException("Artista no encontrado con ID: " + id);
         }

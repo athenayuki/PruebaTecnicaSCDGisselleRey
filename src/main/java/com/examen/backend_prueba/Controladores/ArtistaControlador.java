@@ -8,8 +8,11 @@ import com.examen.backend_prueba.Servicios.ArtistaServicio;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,11 +39,19 @@ public ArtistaEntidad crearArtista(@RequestBody ArtistaEntidad artista) {
     return artistaServicio.guardarArtista(artista);
 
 }
+ // BLOQUE CON IA
+    @PutMapping("/{id}") // <--- MUY IMPORTANTE: Se espera el ID en la URL
+    public ResponseEntity<ArtistaEntidad> actualizarArtista(
+            @PathVariable int id, // <--- Captura el ID de la URL
+            @RequestBody ArtistaEntidad artistaDetalles) { // <--- Captura el cuerpo de la solicitud
 
-@PutMapping
-public ArtistaEntidad actualizarArtista(@RequestBody ArtistaEntidad artista) {
-    return artistaServicio.actualizarArtista(artista.getIdArtista(), artista);
-}
+        ArtistaEntidad artistaActualizado = artistaServicio.actualizarArtista(id, artistaDetalles);
+        if (artistaActualizado != null) {
+            return new ResponseEntity<>(artistaActualizado, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Si el artista no se encuentra para actualizar
+        }
+    }
 
 @DeleteMapping
 public void eliminarArtista(int id) {
