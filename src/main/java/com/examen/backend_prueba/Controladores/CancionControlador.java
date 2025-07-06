@@ -2,6 +2,7 @@ package com.examen.backend_prueba.Controladores;
 
 
 import java.util.List;
+import java.util.Optional;
 import com.examen.backend_prueba.CancionEntidad;
 import com.examen.backend_prueba.Servicios.CancionServicio;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,14 @@ public class CancionControlador {
         // Aquí se llamaría al servicio para obtener todas las canciones
         return cancionServicio.obtenerTodasLasCanciones(); // Retorna una lista vacía como ejemplo
     }
+
+ @GetMapping("/{id}")
+    public ResponseEntity<CancionEntidad> obtenerCancionPorId(@PathVariable int id) {
+        Optional<CancionEntidad> cancion = cancionServicio.obtenerCancionPorId(id);
+        return cancion.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                      .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
 
     // 1. Crear Canción (POST)
     @PostMapping
