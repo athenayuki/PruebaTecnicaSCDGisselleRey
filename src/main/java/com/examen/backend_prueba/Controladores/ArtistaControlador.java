@@ -47,4 +47,5 @@ public void eliminarArtista(int id) {
     artistaServicio.eliminarArtista(id);
 
 }
+}
 
