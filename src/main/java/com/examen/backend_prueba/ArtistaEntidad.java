@@ -8,6 +8,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.GeneratedValue;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.HashSet;
 import java.time.LocalDate;
 import jakarta.persistence.Column;
@@ -32,6 +35,7 @@ public class ArtistaEntidad {
             nullable = false, unique = false) 
     private String nombreArtista;
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     @Column  (name = "FECHA_DEBUT", nullable = false) 
     private LocalDate fechaDebut; 
 

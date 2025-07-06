@@ -1,6 +1,9 @@
 package com.examen.backend_prueba;
 
 import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,6 +38,7 @@ public class CancionEntidad {
     @Column(name = "CALIFICACION_CANCION", nullable = false) 
     private double calificacionCancion; 
 
+    @JsonFormat(pattern = "dd-MM-yyyy")
     @Column (name = "LANZAMIENTO_CANCION", nullable = false)
     private LocalDate lanzamientoCancion; 
 
