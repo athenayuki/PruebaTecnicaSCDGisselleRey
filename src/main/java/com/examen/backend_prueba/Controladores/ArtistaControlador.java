@@ -59,10 +59,13 @@ public ArtistaEntidad crearArtista(@RequestBody ArtistaEntidad artista) {
     }
 
 @DeleteMapping("/{id}")
-
-public void eliminarArtista(int id) {
-    artistaServicio.eliminarArtista(id);
-
+public ResponseEntity<Void> eliminarArtista(@PathVariable int id) {
+    boolean eliminado = artistaServicio.eliminarArtista(id); // Llama al servicio
+    if (eliminado) {
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204 No Content si se eliminó
+    } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND); // 404 Not Found si no se encontró el artista
+    }
 }
 }
 

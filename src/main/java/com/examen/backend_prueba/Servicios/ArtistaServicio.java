@@ -28,9 +28,13 @@ public class ArtistaServicio {
     public Optional<ArtistaEntidad> obtenerArtistaPorId(int id) {
         return artistaRepositorio.findById(id);
     }
-    public void eliminarArtista(int id) {
+   public boolean eliminarArtista(int id) {
+    if (artistaRepositorio.existsById(id)) { // Primero verifica si existe
         artistaRepositorio.deleteById(id);
+        return true; // Eliminado con éxito
     }
+    return false; // No se encontró el artista para eliminar
+}
     public ArtistaEntidad actualizarArtista(int id, ArtistaEntidad artistaDetalles) { //IA
          Optional<ArtistaEntidad> artistaExistenteOptional = artistaRepositorio.findById(id);
         if (artistaExistenteOptional.isPresent()) {
