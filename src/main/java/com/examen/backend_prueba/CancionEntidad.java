@@ -26,7 +26,7 @@ public class CancionEntidad {
         sequenceName = "canciones_id_seq",          // Nombre de la secuencia en la DB (PostgreSQL la creará o la buscará)
         initialValue = 1,                           // Valor inicial de la secuencia
         allocationSize = 50                         // Número de IDs que JPA pre-solicita (optimización)
-    ) //tengo dudas si usar sequence AUTO o IDENTITY
+    ) 
     private int idCancion; //le puse int porque se solicita este tipo de dato pero se sugiere uso de long en vez de int para evitar problemas de overflow
 
     @Column(name = "TITULO_CANCION", length = 200, nullable = false) 
