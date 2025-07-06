@@ -7,6 +7,7 @@ import com.examen.backend_prueba.ArtistaEntidad;
 import com.examen.backend_prueba.Servicios.ArtistaServicio;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -38,7 +40,6 @@ public class ArtistaControlador {
 
 
 @PostMapping
-
 public ArtistaEntidad crearArtista(@RequestBody ArtistaEntidad artista) {
     return artistaServicio.guardarArtista(artista);
 
@@ -57,7 +58,8 @@ public ArtistaEntidad crearArtista(@RequestBody ArtistaEntidad artista) {
         }
     }
 
-@DeleteMapping
+@DeleteMapping("/{id}")
+
 public void eliminarArtista(int id) {
     artistaServicio.eliminarArtista(id);
 
