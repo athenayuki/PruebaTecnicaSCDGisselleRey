@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.examen.backend_prueba.ArtistaEntidad;
 import com.examen.backend_prueba.Servicios.ArtistaServicio;
 import java.util.Optional;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,11 @@ public class ArtistaControlador {
     private final ArtistaServicio artistaServicio;
     public ArtistaControlador(ArtistaServicio artistaServicio) {
         this.artistaServicio = artistaServicio;
+    }
+
+      @GetMapping
+    public List<ArtistaEntidad> obtenerTodosLosArtistas() {
+        return artistaServicio.obtenerTodosLosArtistas();
     }
 
     @GetMapping("/{id}") // <--- Asegúrate de tener esto exactamente así
