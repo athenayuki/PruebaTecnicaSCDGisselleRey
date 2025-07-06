@@ -20,12 +20,12 @@ import jakarta.persistence.GenerationType;
 public class ArtistaEntidad { 
    
     @Id 
-    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "artista_seq_gen") // Usamos SEQUENCE y vinculamos a un generador
+    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "artista_seq_gen") 
     @SequenceGenerator(
-        name = "artista_seq_gen",                  // Nombre del generador en JPA
-        sequenceName = "artistas_id_seq",          // Nombre de la secuencia en tu base de datos PostgreSQL
-        initialValue = 1,                          // Valor inicial de la secuencia (opcional, por defecto es 1)
-        allocationSize = 50          )              // Cantidad de IDs que JPA "reserva" en memoria para optimizar el rendimiento // tengo dudas si usar AUTO o IDENTITY
+        name = "artista_seq_gen",                 
+        sequenceName = "artistas_id_seq",          
+        initialValue = 1,                          
+        allocationSize = 50          )             
     private int idArtista; 
 
     @Column (name = "NOMBRE_ARTISTA", length = 200, 

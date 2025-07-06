@@ -1,8 +1,8 @@
 package com.examen.backend_prueba.Servicios;
 
 import com.examen.backend_prueba.ArtistaEntidad;
-import org.springframework.stereotype.Service;
 import com.examen.backend_prueba.Repositorio.ArtistaRepositorio;
+import org.springframework.stereotype.Service;
 import java.util.List; 
 import java.util.Optional; 
 
@@ -29,11 +29,11 @@ public class ArtistaServicio {
         return artistaRepositorio.findById(id);
     }
    public boolean eliminarArtista(int id) {
-    if (artistaRepositorio.existsById(id)) { // Primero verifica si existe
+    if (artistaRepositorio.existsById(id)) { 
         artistaRepositorio.deleteById(id);
-        return true; // Eliminado con éxito
+        return true;
     }
-    return false; // No se encontró el artista para eliminar
+    return false;
 }
     public ArtistaEntidad actualizarArtista(int id, ArtistaEntidad artistaDetalles) { //IA
          Optional<ArtistaEntidad> artistaExistenteOptional = artistaRepositorio.findById(id);

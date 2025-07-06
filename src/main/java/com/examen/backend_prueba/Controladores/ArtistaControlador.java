@@ -33,7 +33,7 @@ public class ArtistaControlador {
         return artistaServicio.obtenerTodosLosArtistas();
     }
 
-    @GetMapping("/{id}") // <--- Asegúrate de tener esto exactamente así
+    @GetMapping("/{id}") 
     public ResponseEntity<ArtistaEntidad> obtenerArtistaPorId(@PathVariable int id) {
         Optional<ArtistaEntidad> artista = artistaServicio.obtenerArtistaPorId(id);
         return artista.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
@@ -47,27 +47,27 @@ public ArtistaEntidad crearArtista(@RequestBody ArtistaEntidad artista) {
     return artistaServicio.guardarArtista(artista);
 
 }
- // BLOQUE CON IA
-    @PutMapping("/{id}") // <--- MUY IMPORTANTE: Se espera el ID en la URL
+ 
+    @PutMapping("/{id}") 
     public ResponseEntity<ArtistaEntidad> actualizarArtista(
-            @PathVariable int id, // <--- Captura el ID de la URL
-            @RequestBody ArtistaEntidad artistaDetalles) { // <--- Captura el cuerpo de la solicitud
+            @PathVariable int id, 
+            @RequestBody ArtistaEntidad artistaDetalles) { 
 
         ArtistaEntidad artistaActualizado = artistaServicio.actualizarArtista(id, artistaDetalles);
         if (artistaActualizado != null) {
             return new ResponseEntity<>(artistaActualizado, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Si el artista no se encuentra para actualizar
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
         }
     }
 
 @DeleteMapping("/{id}")
 public ResponseEntity<Void> eliminarArtista(@PathVariable int id) {
-    boolean eliminado = artistaServicio.eliminarArtista(id); // Llama al servicio
+    boolean eliminado = artistaServicio.eliminarArtista(id); 
     if (eliminado) {
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204 No Content si se eliminó
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
     } else {
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND); // 404 Not Found si no se encontró el artista
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
     }
 }
 }

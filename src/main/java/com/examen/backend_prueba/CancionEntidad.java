@@ -22,12 +22,12 @@ public class CancionEntidad {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cancion_seq_gen") 
     @SequenceGenerator(
-        name = "cancion_seq_gen",                  // Nombre del generador
-        sequenceName = "canciones_id_seq",          // Nombre de la secuencia en la DB (PostgreSQL la creará o la buscará)
-        initialValue = 1,                           // Valor inicial de la secuencia
-        allocationSize = 50                         // Número de IDs que JPA pre-solicita (optimización)
+        name = "cancion_seq_gen",                 
+        sequenceName = "canciones_id_seq",          
+        initialValue = 1,                         
+        allocationSize = 50                        
     ) 
-    private int idCancion; //le puse int porque se solicita este tipo de dato pero se sugiere uso de long en vez de int para evitar problemas de overflow
+    private int idCancion; 
 
     @Column(name = "TITULO_CANCION", length = 200, nullable = false) 
     private String tituloCancion; 

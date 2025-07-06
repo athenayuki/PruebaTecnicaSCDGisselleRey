@@ -1,6 +1,6 @@
 package com.examen.backend_prueba.Repositorio;
 
-import com.examen.backend_prueba.ArtistaEntidad; // Importa tu entidad Artista
+import com.examen.backend_prueba.ArtistaEntidad; 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

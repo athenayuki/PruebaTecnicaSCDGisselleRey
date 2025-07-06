@@ -28,8 +28,7 @@ public class CancionControlador {
 
     @GetMapping
     public List<CancionEntidad> obtenerTodasLasCanciones() {
-        // Aquí se llamaría al servicio para obtener todas las canciones
-        return cancionServicio.obtenerTodasLasCanciones(); // Retorna una lista vacía como ejemplo
+        return cancionServicio.obtenerTodasLasCanciones(); 
     }
 
  @GetMapping("/{id}")
@@ -39,33 +38,30 @@ public class CancionControlador {
                       .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-
-    // 1. Crear Canción (POST)
     @PostMapping
     public ResponseEntity<CancionEntidad> crearCancion(@RequestBody CancionEntidad cancion) {
-        CancionEntidad nuevaCancion = cancionServicio.guardarCancion(cancion); // Asume que tienes un método guardarCancion en tu servicio
+        CancionEntidad nuevaCancion = cancionServicio.guardarCancion(cancion); 
         return new ResponseEntity<>(nuevaCancion, HttpStatus.CREATED);
     }
 
-    // 2. Actualizar Canción (PUT)
+
     @PutMapping("/{id}")
     public ResponseEntity<CancionEntidad> actualizarCancion(@PathVariable int id, @RequestBody CancionEntidad cancionDetalles) {
-        CancionEntidad cancionActualizada = cancionServicio.actualizarCancion(id, cancionDetalles); // Asume que tienes un método actualizarCancion en tu servicio
+        CancionEntidad cancionActualizada = cancionServicio.actualizarCancion(id, cancionDetalles); 
         if (cancionActualizada != null) {
             return new ResponseEntity<>(cancionActualizada, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Si la canción no se encuentra para actualizar
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
         }
     }
 
-    // 3. Eliminar Canción (DELETE)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarCancion(@PathVariable int id) {
-        boolean eliminado = cancionServicio.eliminarCancion(id); // Asume que tienes un método eliminarCancion en tu servicio
+        boolean eliminado = cancionServicio.eliminarCancion(id); 
         if (eliminado) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204 No Content para eliminación exitosa sin cuerpo de respuesta
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Si la canción no se encuentra para eliminar
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
     
