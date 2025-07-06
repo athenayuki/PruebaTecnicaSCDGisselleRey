@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping("/artistas")
+@RequestMapping("/api/artistas")
 public class ArtistaControlador {
 
     private final ArtistaServicio artistaServicio;
