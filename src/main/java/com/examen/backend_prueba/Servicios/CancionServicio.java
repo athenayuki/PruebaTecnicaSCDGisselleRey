@@ -26,17 +26,39 @@ private final CancionRepositorio cancionRepositorio;
         return cancionRepositorio.findById(id);
     }
 
-    public void eliminarCancion(int id) {
-        cancionRepositorio.deleteById(id);
+// Método para actualizar una canción (necesario si lo usas en el controlador)
+    public CancionEntidad actualizarCancion(int id, CancionEntidad cancionDetalles) {
+        // Primero, busca la canción existente
+        Optional<CancionEntidad> cancionExistenteOptional = cancionRepositorio.findById(id);
+
+        if (cancionExistenteOptional.isPresent()) {
+            CancionEntidad cancionExistente = cancionExistenteOptional.get();
+
+            // Actualiza los campos necesarios
+            cancionExistente.setTituloCancion(cancionDetalles.getTituloCancion());
+            cancionExistente.setCalificacionCancion(cancionDetalles.getCalificacionCancion());
+            cancionExistente.setLanzamientoCancion(cancionDetalles.getLanzamientoCancion());
+            cancionExistente.setFavoritaCancion(cancionDetalles.isFavoritaCancion());
+            // Si ArtistaEntidad puede ser actualizado o necesita ser asignado
+            if (cancionDetalles.getArtista() != null) {
+                cancionExistente.setArtista(cancionDetalles.getArtista());
+            }
+
+            // Guarda la canción actualizada en la base de datos
+            return cancionRepositorio.save(cancionExistente);
+        } else {
+            return null; // O lanza una excepción, dependiendo de tu manejo de errores
+        }
     }
 
-    public CancionEntidad actualizarCancion(int id, CancionEntidad cancionActualizada) {
+
+     public boolean eliminarCancion(int id) {
+        // Verifica si la canción existe antes de intentar eliminarla
         if (cancionRepositorio.existsById(id)) {
-            cancionActualizada.setIdCancion(id);
-            return cancionRepositorio.save(cancionActualizada);
-        } else {
-            throw new RuntimeException("Canción no encontrada con ID: " + id);
+            cancionRepositorio.deleteById(id);
+            return true; // Eliminada con éxito
         }
+        return false; // No se encontró la canción para eliminar
     }
 
 
