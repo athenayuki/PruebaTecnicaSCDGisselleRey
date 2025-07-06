@@ -11,12 +11,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.FetchType; 
 
 
 
 @Entity(name = "cancion") 
 @Table(name = "canciones") 
-
 public class CancionEntidad {
 
     @Id
@@ -41,7 +41,7 @@ public class CancionEntidad {
     @Column(name = "FAVORITA_CANCION", nullable = false)
     private boolean favoritaCancion; 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idArtista")
     private ArtistaEntidad artista;
  
