@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.examen.backend_prueba.BackendPruebaApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.500 s -- in com.examen.backend_prueba.BackendPruebaApplicationTests

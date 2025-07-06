@@ -1,0 +1,9 @@
+com\examen\backend_prueba\Controladores\ArtistaControlador.class
+com\examen\backend_prueba\Controladores\CancionControlador.class
+com\examen\backend_prueba\Repositorio\CancionRepositorio.class
+com\examen\backend_prueba\ArtistaEntidad.class
+com\examen\backend_prueba\CancionEntidad.class
+com\examen\backend_prueba\Servicios\ArtistaServicio.class
+com\examen\backend_prueba\Repositorio\ArtistaRepositorio.class
+com\examen\backend_prueba\BackendPruebaApplication.class
+com\examen\backend_prueba\Servicios\CancionServicio.class
