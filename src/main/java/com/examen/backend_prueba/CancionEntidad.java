@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 
@@ -19,7 +20,9 @@ public class CancionEntidad {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cancion_seq_gen") 
+    @SequenceGenerator(name = "cancion_seq_gen",sequenceName = "canciones_id_seq",
+                    initialValue = 1, allocationSize = 50 ) 
     private int idCancion;
 
 
@@ -37,7 +40,7 @@ public class CancionEntidad {
     private boolean favoritaCancion; 
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idArtista")
     private ArtistaEntidad artista;
  
