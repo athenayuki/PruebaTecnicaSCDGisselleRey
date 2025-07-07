@@ -20,9 +20,8 @@ public class ArtistaEntidad {
    
 
     @Id
-    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "artista_seq") 
-    @SequenceGenerator(name = "artista_seq", sequenceName = "artistas_id_seq", initialValue = 1, allocationSize = 1                    // <--- ¡IMPORTANTE! Esto hará que vaya de uno en uno
-    )    
+    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "artista_seq") //lo hice con sequence para hacer una propuesta diferente
+    @SequenceGenerator(name = "artista_seq", sequenceName = "artistas_id_seq", initialValue = 1, allocationSize = 1    )    
     private int idArtista; 
 
 
