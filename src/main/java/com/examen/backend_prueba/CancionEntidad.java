@@ -20,7 +20,7 @@ public class CancionEntidad {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "cancion_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "cancion_seq") 
     @SequenceGenerator(name = "cancion_seq", sequenceName = "cancion_seq", allocationSize = 1) 
     private int idCancion;
 
