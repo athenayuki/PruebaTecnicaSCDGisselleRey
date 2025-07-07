@@ -3,7 +3,6 @@ package com.examen.backend_prueba.Repositorio;
 import com.examen.backend_prueba.ArtistaEntidad; 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -16,7 +15,5 @@ public interface ArtistaRepositorio extends JpaRepository<ArtistaEntidad, Intege
     List<ArtistaEntidad> findByFechaDebutBefore(LocalDate fecha);
 
     List<ArtistaEntidad> findBySeguirArtistaTrue();
-
-
 
 }

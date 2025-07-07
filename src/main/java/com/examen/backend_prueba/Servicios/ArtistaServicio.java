@@ -10,13 +10,11 @@ import java.util.Optional;
 public class ArtistaServicio {
 
     private final ArtistaRepositorio artistaRepositorio; 
-
     
     public ArtistaServicio(ArtistaRepositorio artistaRepositorio) {
         this.artistaRepositorio = artistaRepositorio;
     }
 
-   
     public ArtistaEntidad guardarArtista(ArtistaEntidad artista) {
         return artistaRepositorio.save(artista);
     }
@@ -28,7 +26,7 @@ public class ArtistaServicio {
     public Optional<ArtistaEntidad> obtenerArtistaPorId(int id) {
         return artistaRepositorio.findById(id);
     }
-   public boolean eliminarArtista(int id) {
+    public boolean eliminarArtista(int id) {
     if (artistaRepositorio.existsById(id)) { 
         artistaRepositorio.deleteById(id);
         return true;
@@ -47,6 +45,4 @@ public class ArtistaServicio {
             throw new RuntimeException("Artista no encontrado con ID: " + id);
         }
     }
-
-   
 }

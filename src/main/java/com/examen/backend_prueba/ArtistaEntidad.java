@@ -1,35 +1,30 @@
 package com.examen.backend_prueba;
 
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.GeneratedValue;
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.util.HashSet;
-import java.time.LocalDate;
 import jakarta.persistence.Column;
 import jakarta.persistence.GenerationType;
-
+import java.util.Set;
+import java.util.HashSet;
+import java.time.LocalDate;
 
 
 @Entity(name = "artista") 
 @Table(name = "artistas") 
 public class ArtistaEntidad { 
    
+
     @Id 
     @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "artista_seq_gen") 
-    @SequenceGenerator(
-        name = "artista_seq_gen",                 
-        sequenceName = "artistas_id_seq",          
-        initialValue = 1,                          
-        allocationSize = 50          )             
+    @SequenceGenerator(name = "artista_seq_gen", sequenceName = "artistas_id_seq",          
+                        initialValue = 1, allocationSize = 50)             
     private int idArtista; 
+
 
     @Column (name = "NOMBRE_ARTISTA", length = 200, 
             nullable = false, unique = false) 
@@ -47,9 +42,6 @@ public class ArtistaEntidad {
     private Set<CancionEntidad> canciones = new HashSet<>(); 
 
 
-
-
-
     public ArtistaEntidad() {
     }
 
@@ -62,7 +54,6 @@ public class ArtistaEntidad {
     public int getIdArtista() {
         return idArtista;
     }
-
     public void setIdArtista(int idArtista) {
         this.idArtista = idArtista;
     }
@@ -70,7 +61,6 @@ public class ArtistaEntidad {
     public String getNombreArtista() {
         return nombreArtista;
     }
-
     public void setNombreArtista(String nombreArtista) {
         this.nombreArtista = nombreArtista;
     }
@@ -78,7 +68,6 @@ public class ArtistaEntidad {
     public LocalDate getFechaDebut() {
         return fechaDebut;
     }
-
     public void setFechaDebut(LocalDate fechaDebut) {
         this.fechaDebut = fechaDebut;
     }
@@ -86,12 +75,9 @@ public class ArtistaEntidad {
     public boolean isSeguiRArtista() {
         return seguirArtista;
     }
-
     public void setSeguiRArtista(boolean seguiRArtista) {
         this.seguirArtista = seguiRArtista;
     }
-
-
 
 }
 

@@ -26,18 +26,14 @@ private final CancionRepositorio cancionRepositorio;
         return cancionRepositorio.findById(id);
     }
 
-
     public CancionEntidad actualizarCancion(int id, CancionEntidad cancionDetalles) {
         Optional<CancionEntidad> cancionExistenteOptional = cancionRepositorio.findById(id);
-
         if (cancionExistenteOptional.isPresent()) {
             CancionEntidad cancionExistente = cancionExistenteOptional.get();
-
             cancionExistente.setTituloCancion(cancionDetalles.getTituloCancion());
             cancionExistente.setCalificacionCancion(cancionDetalles.getCalificacionCancion());
             cancionExistente.setLanzamientoCancion(cancionDetalles.getLanzamientoCancion());
             cancionExistente.setFavoritaCancion(cancionDetalles.isFavoritaCancion());
-          
             if (cancionDetalles.getArtista() != null) {
                 cancionExistente.setArtista(cancionDetalles.getArtista());
             }
@@ -48,14 +44,10 @@ private final CancionRepositorio cancionRepositorio;
     }
 
      public boolean eliminarCancion(int id) {
-        
         if (cancionRepositorio.existsById(id)) {
             cancionRepositorio.deleteById(id);
             return true; 
         }
         return false; 
     }
-
-
-
 }

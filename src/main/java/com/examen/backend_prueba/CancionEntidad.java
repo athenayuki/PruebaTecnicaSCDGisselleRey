@@ -1,9 +1,7 @@
 package com.examen.backend_prueba;
 
-import java.time.LocalDate;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+import java.time.LocalDate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -16,21 +14,17 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 
-
-
 @Entity(name = "cancion") 
 @Table(name = "canciones") 
 public class CancionEntidad {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cancion_seq_gen") 
-    @SequenceGenerator(
-        name = "cancion_seq_gen",                 
-        sequenceName = "canciones_id_seq",          
-        initialValue = 1,                         
-        allocationSize = 50                        
-    ) 
+    @SequenceGenerator(name = "cancion_seq_gen", sequenceName = "canciones_id_seq",          
+                        initialValue = 1, allocationSize = 50) 
     private int idCancion; 
+
 
     @Column(name = "TITULO_CANCION", length = 200, nullable = false) 
     private String tituloCancion; 
@@ -44,6 +38,7 @@ public class CancionEntidad {
 
     @Column(name = "FAVORITA_CANCION", nullable = false)
     private boolean favoritaCancion; 
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idArtista")
@@ -67,7 +62,7 @@ public class CancionEntidad {
     }       
     public void setIdCancion(int idCancion) {
             this.idCancion = idCancion;
-        }   
+    }   
 
     public String getTituloCancion() {
         return tituloCancion;
@@ -78,23 +73,25 @@ public class CancionEntidad {
 
     public double getCalificacionCancion() {
         return calificacionCancion; 
-
     }
     public void setCalificacionCancion(double calificacionCancion) {        
         this.calificacionCancion = calificacionCancion;
     }
+
     public LocalDate getLanzamientoCancion() {
         return lanzamientoCancion;      
     }
     public void setLanzamientoCancion(LocalDate lanzamientoCancion) {                       
         this.lanzamientoCancion = lanzamientoCancion;
     }
+
     public boolean isFavoritaCancion() {
         return favoritaCancion;             
     }
     public void setFavoritaCancion(boolean favoritaCancion) {   
         this.favoritaCancion = favoritaCancion;
     }
+    
     public ArtistaEntidad getArtista() {
         return artista; 
     }

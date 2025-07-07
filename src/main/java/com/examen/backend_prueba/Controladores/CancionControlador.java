@@ -1,10 +1,9 @@
 package com.examen.backend_prueba.Controladores;
 
-
-import java.util.List;
-import java.util.Optional;
 import com.examen.backend_prueba.CancionEntidad;
 import com.examen.backend_prueba.Servicios.CancionServicio;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping ("/canciones")
 public class CancionControlador {
-
  
     private final CancionServicio cancionServicio; 
     public CancionControlador(CancionServicio cancionServicio) {
@@ -31,7 +29,7 @@ public class CancionControlador {
         return cancionServicio.obtenerTodasLasCanciones(); 
     }
 
- @GetMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<CancionEntidad> obtenerCancionPorId(@PathVariable int id) {
         Optional<CancionEntidad> cancion = cancionServicio.obtenerCancionPorId(id);
         return cancion.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
@@ -43,7 +41,6 @@ public class CancionControlador {
         CancionEntidad nuevaCancion = cancionServicio.guardarCancion(cancion); 
         return new ResponseEntity<>(nuevaCancion, HttpStatus.CREATED);
     }
-
 
     @PutMapping("/{id}")
     public ResponseEntity<CancionEntidad> actualizarCancion(@PathVariable int id, @RequestBody CancionEntidad cancionDetalles) {
@@ -64,6 +61,4 @@ public class CancionControlador {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    
-
 }
