@@ -35,7 +35,7 @@ public class ArtistaServicio {
     }
     return false;
 }
-    public ArtistaEntidad actualizarArtista(int id, ArtistaEntidad artistaDetalles) { //IA
+    public ArtistaEntidad actualizarArtista(int id, ArtistaEntidad artistaDetalles) { 
          Optional<ArtistaEntidad> artistaExistenteOptional = artistaRepositorio.findById(id);
         if (artistaExistenteOptional.isPresent()) {
              ArtistaEntidad artistaExistente = artistaExistenteOptional.get();
