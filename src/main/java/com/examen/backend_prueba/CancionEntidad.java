@@ -20,10 +20,8 @@ public class CancionEntidad {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cancion_seq_gen") 
-    @SequenceGenerator(name = "cancion_seq_gen", sequenceName = "canciones_id_seq",          
-                        initialValue = 1, allocationSize = 50) 
-    private int idCancion; 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idCancion;
 
 
     @Column(name = "TITULO_CANCION", length = 200, nullable = false) 
