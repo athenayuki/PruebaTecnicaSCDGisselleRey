@@ -28,5 +28,9 @@ En el presente trabajo se realiza una aplicación utilizando:
 
 Adicional: Intenté aplicar los principios SOLID dentro de lo que pude para la generación de clases, seguir un orden y estructura que fuera lo más fácil de entender y tener buenas practicas en programación.
 
+5. No utilizar la librería LOMBOK.
+
+6. Se entrega en link de git (https://github.com/athenayuki/PruebaTecnicaSCDGisselleRey) y en archivo comprimido en zip
+
 Quedo abierta a comentarios.
 
